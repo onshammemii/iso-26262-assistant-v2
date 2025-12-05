@@ -23,7 +23,7 @@ class ConversationalRAGChain:
 
         # Use Groq SDK directly - no ChatGroq wrapper
         self.client = Groq(api_key=groq_api_key)
-        print("✅ Groq client initialized successfully")
+        print(" Groq client initialized successfully")
 
     def _needs_contextualization(self, question: str) -> bool:
         """Detect if a question needs conversation context"""
@@ -64,7 +64,7 @@ class ConversationalRAGChain:
             docs = self.vector_store.similarity_search(query, k=k)
             return docs
         except Exception as e:
-            print(f"❌ Error retrieving documents: {e}")
+            print(f" Error retrieving documents: {e}")
             return []
 
     def _format_docs(self, docs: List[Document]) -> str:
@@ -149,7 +149,7 @@ Answer in a warm, professional, and helpful manner:"""
             answer = response.choices[0].message.content
 
         except Exception as e:
-            print(f"❌ Error generating answer: {e}")
+            print(f" Error generating answer: {e}")
             answer = "I encountered an error while generating the answer. Please try again."
 
         # Extract sources
