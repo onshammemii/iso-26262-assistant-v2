@@ -18,11 +18,11 @@ def load_or_create_vector_store(persist_directory: str = "data/vector_store"):
     Returns:
         FAISS vector store instance
     """
-    print(f"\n📦 Loading vector store from {persist_directory}...")
+    print(f"\n Loading vector store from {persist_directory}...")
 
     if not os.path.exists(persist_directory):
-        print(f"❌ Vector store not found at {persist_directory}")
-        print(f"📁 Please make sure you have the vector store files (index.faiss, index.pkl)")
+        print(f" Vector store not found at {persist_directory}")
+        print(f" Please make sure you have the vector store files (index.faiss, index.pkl)")
         return None
 
     try:
@@ -35,11 +35,11 @@ def load_or_create_vector_store(persist_directory: str = "data/vector_store"):
             persist_directory,
             embeddings
         )
-        print(f"✅ Vector store loaded successfully")
+        print(f" Vector store loaded successfully")
         return vector_store
 
     except Exception as e:
-        print(f"❌ Error loading vector store: {e}")
+        print(f" Error loading vector store: {e}")
         return None
 
 
@@ -51,7 +51,7 @@ def search_documents(vector_store, query: str, k: int = 5):
         results = vector_store.similarity_search(query, k=k)
         return results
     except Exception as e:
-        print(f"❌ Error searching documents: {e}")
+        print(f" Error searching documents: {e}")
         return []
 
 
@@ -63,16 +63,16 @@ if __name__ == "__main__":
     store = load_or_create_vector_store()
 
     if store:
-        print("\n🧪 Testing search functionality...")
+        print("\n Testing search functionality...")
         results = search_documents(store, "What is ASIL?", k=3)
 
-        print(f"\n📋 Found {len(results)} results for 'What is ASIL?':\n")
+        print(f"\n Found {len(results)} results for 'What is ASIL?':\n")
         for i, doc in enumerate(results, 1):
             print(f"--- Result {i} ---")
             print(f"Content: {doc.page_content[:150]}...")
             print(f"Source: {doc.metadata.get('source', 'Unknown')}")
             print()
 
-        print("✅ Vector store is working correctly!")
+        print(" Vector store is working correctly!")
     else:
-        print("❌ Failed to load vector store")
+        print(" Failed to load vector store")
