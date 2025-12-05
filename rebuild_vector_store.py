@@ -35,9 +35,9 @@ def load_pdfs_from_folder(pdf_directory: str):
                     }
                 )
                 documents.append(doc)
-                print(f"    ✅ {len(reader.pages)} pages")
+                print(f"     {len(reader.pages)} pages")
             except Exception as e:
-                print(f"    ❌ Error: {e}")
+                print(f"     Error: {e}")
 
     return documents
 
@@ -46,7 +46,7 @@ def rebuild_vector_store():
     """Rebuild vector store from PDFs"""
 
     print("\n" + "="*60)
-    print("🔨 REBUILDING VECTOR STORE (Windows Safe)")
+    print(" REBUILDING VECTOR STORE (Windows Safe)")
     print("="*60 + "\n")
 
     data_folder = "data/raw"
@@ -54,22 +54,22 @@ def rebuild_vector_store():
 
     # Delete old one
     if os.path.exists(persist_directory):
-        print(f"🗑️  Deleting old vector store...")
+        print(f"  Deleting old vector store...")
         import shutil
         shutil.rmtree(persist_directory)
 
     # Load PDFs with pypdf
-    print(f"\n📄 Loading PDFs from {data_folder}...")
+    print(f"\n Loading PDFs from {data_folder}...")
     documents = load_pdfs_from_folder(data_folder)
 
     if not documents:
-        print("❌ No PDFs loaded!")
+        print(" No PDFs loaded!")
         return
 
-    print(f"\n✅ Total PDFs: {len(documents)}")
+    print(f"\n Total PDFs: {len(documents)}")
 
     # Split documents
-    print(f"\n✂️  Splitting documents into chunks...")
+    print(f"\n  Splitting documents into chunks...")
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200,
@@ -77,28 +77,28 @@ def rebuild_vector_store():
     )
 
     chunks = text_splitter.split_documents(documents)
-    print(f"✅ Total chunks: {len(chunks)}")
+    print(f" Total chunks: {len(chunks)}")
 
     # Create embeddings
-    print(f"\n🧠 Creating embeddings...")
+    print(f"\n Creating embeddings...")
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
-    print(f"✅ Embeddings model loaded")
+    print(f" Embeddings model loaded")
 
     # Create vector store
-    print(f"\n🗂️  Building FAISS index...")
+    print(f"\n  Building FAISS index...")
     vector_store = FAISS.from_documents(chunks, embeddings)
-    print(f"✅ Index created with {len(chunks)} chunks")
+    print(f" Index created with {len(chunks)} chunks")
 
     # Save it
-    print(f"\n💾 Saving to {persist_directory}...")
+    print(f"\n Saving to {persist_directory}...")
     os.makedirs(persist_directory, exist_ok=True)
     vector_store.save_local(persist_directory)
-    print(f"✅ Saved successfully!")
+    print(f" Saved successfully!")
 
     print("\n" + "="*60)
-    print("✅ VECTOR STORE REBUILT SUCCESSFULLY!")
+    print(" VECTOR STORE REBUILT SUCCESSFULLY!")
     print("="*60 + "\n")
 
 
