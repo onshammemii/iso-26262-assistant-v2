@@ -35,7 +35,7 @@ langchain-community==0.0.20
 langchain-core==0.1.28
 langchain-groq==0.0.1
 langchain-text-splitters==0.0.2
-langsmith==0.0.87
+langsmith==0.1.0
 MarkupSafe==3.0.3
 marshmallow==3.26.1
 mpmath==1.3.0
