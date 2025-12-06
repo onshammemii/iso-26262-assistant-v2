@@ -12,7 +12,7 @@ click==8.3.1
 colorama==0.4.6
 dataclasses-json==0.6.7
 distro==1.9.0
-faiss-cpu==1.13.1
+faiss-cpu==1.7.4
 filelock==3.20.0
 Flask==3.1.2
 Flask-Session==0.5.0
@@ -30,12 +30,12 @@ Jinja2==3.1.6
 joblib==1.5.2
 jsonpatch==1.33
 jsonpointer==3.0.0
-langchain==0.1.14
-langchain-community==0.0.35
-langchain-core==0.1.48
-langchain-groq==0.1.3
+langchain==0.0.350
+langchain-community==0.0.20
+langchain-core==0.1.23
+langchain-groq==0.0.1
 langchain-text-splitters==0.0.2
-langsmith==0.1.83
+langsmith==0.0.87
 MarkupSafe==3.0.3
 marshmallow==3.26.1
 mpmath==1.3.0
