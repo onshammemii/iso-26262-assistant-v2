@@ -1,6 +1,6 @@
 """
 Flask-based ISO 26262 Safety Assistant
-FIXED - Correct filename and compatibility
+FIXED - Correct filename and compatibility with Hugging Face Spaces
 """
 
 from flask import Flask, render_template, request, jsonify, session
@@ -19,7 +19,7 @@ try:
     from rag_chain_enhanced import ConversationalRAGChain
 except ImportError as e:
     print(f"❌ ERROR importing RAG chain: {e}")
-    print("Make sure file is named 'rag_chain_enhanced.py' (not 'rag_chain_enhanced.py')")
+    print("Make sure file is named 'rag_chain_enhanced.py'")
     raise
 
 from vector_store import load_or_create_vector_store
@@ -330,15 +330,16 @@ if __name__ == '__main__':
     print("    ISO 26262 Safety Assistant - Starting...")
     print("🛡️  "*20 + "\n")
 
+    # Get port from environment (Hugging Face Spaces uses 7860)
+    port = int(os.getenv('PORT', 7860))
+
     if not initialize_rag_system():
         print("\n⚠️  WARNING: RAG system failed to initialize!")
         print("The app will start but won't be able to answer questions.")
         print("Please check the errors above and restart.\n")
 
     print("\n🌐 Starting Flask server...")
-    print("👉 Local: http://127.0.0.1:5000")
-    print("👉 Network: http://0.0.0.0:5000")
+    print(f"👉 Running on: http://0.0.0.0:{port}")
     print("\n💡 Press CTRL+C to stop\n")
 
-    app.run(debug=True, host='0.0.0.0', port=5000)
-
+    app.run(debug=False, host='0.0.0.0', port=port)
