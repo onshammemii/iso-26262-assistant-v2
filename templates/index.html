@@ -511,7 +511,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <button class="home-btn" onclick="goToHome()">🏠 Home</button>
+                <button class="home-btn" onclick="goToHome()"> Home</button>
                 <button class="new-chat-btn" onclick="createNewChat()">+ New Chat</button>
             </div>
             <div class="conversations-list" id="conversations-list">
@@ -668,7 +668,7 @@
 
                 const renameBtn = document.createElement('button');
                 renameBtn.className = 'rename-btn';
-                renameBtn.textContent = '✏️';
+                renameBtn.textContent = '';
                 renameBtn.onclick = (e) => {
                     e.stopPropagation();
                     openRenameModal(conv.id, conv.title);
