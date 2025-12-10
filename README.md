@@ -21,7 +21,7 @@ An AI-powered assistant that helps engineers understand and implement **ISO 2626
 ##  Getting Started
 
 ### Try it Live
-Simply ask questions in the chat interface! No installation needed.
+Simply ask questions in the chat interface! No installation needed. Try it here: [iso-26262-assistant-v2](https://huggingface.co/spaces/onshammemii/iso-26262-assistant-v2)
 
 ### Example Questions
 
