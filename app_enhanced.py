@@ -18,7 +18,7 @@ load_dotenv()
 try:
     from rag_chain_enhanced import ConversationalRAGChain
 except ImportError as e:
-    print(f"❌ ERROR importing RAG chain: {e}")
+    print(f" ERROR importing RAG chain: {e}")
     print("Make sure file is named 'rag_chain_enhanced.py'")
     raise
 
@@ -46,30 +46,30 @@ def initialize_rag_system():
 
     try:
         print("\n" + "="*50)
-        print("🚀 Initializing RAG System...")
+        print(" Initializing RAG System...")
         print("="*50)
 
         # Load API key
         groq_api_key = os.getenv("GROQ_API_KEY")
         if not groq_api_key:
-            print("❌ ERROR: GROQ_API_KEY not found in environment")
-            print("💡 Set it with: export GROQ_API_KEY='your_key'")
+            print(" ERROR: GROQ_API_KEY not found in environment")
+            print(" Set it with: export GROQ_API_KEY='your_key'")
             return False
 
-        print(f"✅ API key found: {groq_api_key[:10]}...{groq_api_key[-10:]}")
+        print(f" API key found: {groq_api_key[:10]}...{groq_api_key[-10:]}")
 
         # Load vector store
-        print("\n📦 Loading vector store...")
+        print("\n Loading vector store...")
         vector_store = load_or_create_vector_store()
 
         if vector_store is None:
-            print("❌ ERROR: Failed to load vector store")
+            print(" ERROR: Failed to load vector store")
             return False
 
-        print("✅ Vector store loaded successfully")
+        print(" Vector store loaded successfully")
 
         # Initialize RAG chain
-        print("\n🤖 Initializing RAG chain...")
+        print("\n Initializing RAG chain...")
         rag_chain = ConversationalRAGChain(
             vector_store=vector_store,
             groq_api_key=groq_api_key,
@@ -78,12 +78,12 @@ def initialize_rag_system():
 
         vector_store_loaded = True
         print("\n" + "="*50)
-        print("✅ RAG system initialized successfully!")
+        print(" RAG system initialized successfully!")
         print("="*50 + "\n")
         return True
 
     except Exception as e:
-        print(f"\n❌ ERROR initializing RAG system: {e}")
+        print(f"\n ERROR initializing RAG system: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -227,7 +227,7 @@ def api_query():
         })
 
     except Exception as e:
-        print(f"❌ Error processing query: {e}")
+        print(f" Error processing query: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -326,20 +326,20 @@ def api_delete_conversation(conversation_id):
 
 
 if __name__ == '__main__':
-    print("\n" + "🛡️  "*20)
+  
     print("    ISO 26262 Safety Assistant - Starting...")
-    print("🛡️  "*20 + "\n")
+
 
     # Get port from environment (Hugging Face Spaces uses 7860)
     port = int(os.getenv('PORT', 7860))
     
     if not initialize_rag_system():
-        print("\n⚠️  WARNING: RAG system failed to initialize!")
+        print("\n  WARNING: RAG system failed to initialize!")
         print("The app will start but won't be able to answer questions.")
         print("Please check the errors above and restart.\n")
 
-    print("\n🌐 Starting Flask server...")
-    print(f"👉 Running on: http://0.0.0.0:{port}")
-    print("\n💡 Press CTRL+C to stop\n")
+    print("\n Starting Flask server...")
+    print(f" Running on: http://0.0.0.0:{port}")
+    print("\n Press CTRL+C to stop\n")
 
     app.run(debug=False, host='0.0.0.0', port=port)
