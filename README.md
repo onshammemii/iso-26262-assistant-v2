@@ -5,11 +5,11 @@ An AI-powered assistant that helps engineers understand and implement **ISO 2626
 
 ##  Features
 
-- ** AI-Powered Q&A**: Ask questions about ISO 26262 and get instant, accurate answers
-- ** Multi-turn Conversations**: Maintain context across multiple questions
-- ** Semantic Search**: Find relevant safety documentation using vector embeddings
-- ** Expert Knowledge**: Trained on comprehensive ISO 26262 documentation
-- ** Fast & Reliable**: Real-time responses with source attribution
+- **AI-Powered Q&A**: Ask questions about ISO 26262 and get instant, accurate answers
+- **Multi-turn Conversations**: Maintain context across multiple questions
+- **Semantic Search**: Find relevant safety documentation using vector embeddings
+- **Expert Knowledge**: Trained on comprehensive ISO 26262 documentation
+- **Fast & Reliable**: Real-time responses with source attribution
 
 ##  Use Cases
 
